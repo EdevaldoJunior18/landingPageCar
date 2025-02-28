@@ -1,12 +1,18 @@
-import Header from './components/Header/header';
+import Carousel from './components/Carousel/carousel';
 import Navbar from './components/Navbar/navbar';
 
-
 function Index() {
+
+  const images = [
+    'https://res.cloudinary.com/de4imnkqu/image/upload/v1729866834/yhaiohskih1kizbbejvb.webp',
+    'https://res.cloudinary.com/de4imnkqu/image/upload/v1729866834/yhaiohskih1kizbbejvb.webp',
+    'https://res.cloudinary.com/de4imnkqu/image/upload/v1729866834/yhaiohskih1kizbbejvb.webp',
+  ];
+
   return (
     <div>
       <Navbar />
-      <Header />
+      <Carousel images={images} />
     </div>
   );
 }
