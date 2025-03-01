@@ -31,7 +31,7 @@ export default function Carousel({ images }: CarouselProps) {
                             <img
                                 src={image}
                                 alt={`Slide ${index + 1}`}
-                                className="w-full h-[50vh] md:h-[60vh] object-cover" // Altura responsiva
+                                className="w-full h-[50vh] md:h-[60vh] object-cover"
                             />
                         </div>
                     ))}
