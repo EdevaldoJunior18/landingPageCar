@@ -20,7 +20,7 @@ export default function Carousel({ images }: CarouselProps) {
     }
 
     return (
-        <div className="relative w-full max-w-2xl mx-auto">
+        <div className="relative w-full mx-auto">
             <div className="overflow-hidden rounded-lg">
                 <div
                     className="flex transition-transform duration-500 ease-in-out"
@@ -31,7 +31,7 @@ export default function Carousel({ images }: CarouselProps) {
                             <img
                                 src={image}
                                 alt={`Slide ${index + 1}`}
-                                className="w-full h-64 object-cover"
+                                className="w-full h-[50vh] md:h-[60vh] object-cover" // Altura responsiva
                             />
                         </div>
                     ))}
@@ -58,8 +58,7 @@ export default function Carousel({ images }: CarouselProps) {
                     <button
                         key={`dot-${index}`}
                         onClick={() => setCurrentIndex(index)}
-                        className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-400'
-                            }`}
+                        className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-400'}`}
                         aria-label={`Ir para slide ${index + 1}`}
                     />
                 ))}
