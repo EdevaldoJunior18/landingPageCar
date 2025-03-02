@@ -42,7 +42,7 @@ export default function WhatsButton() {
                     letterSpacing: "0%",
                 }}
             >
-                Contate um Vendedor
+                {/* Contate um Vendedor */}
             </span>
         </a>
     );
