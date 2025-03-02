@@ -19,13 +19,11 @@ export default function Header() {
         Home <span className="mx-2 font-bold relative top-[-0.13em]">→</span>{' '}
         Contatos
       </h4>
-
       <div className="absolute top-[60px] right-[150px] flex gap-[70px]">
         <a
           href="#header-section"
           id="inicio-button"
-          className="text-white font-oswald font-light relative group text-[18px]"
-        />
+          className="text-white font-oswald font-light relative group text-[18px]" />
         <button className="text-white font-oswald font-light relative group text-[18px]">
           <span className="group-hover:text-orange-500 text-[20px] font-semibold">
             INICIO

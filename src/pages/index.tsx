@@ -1,8 +1,9 @@
 import Carousel from './components/Carousel/carousel';
-import Estoque from './components/Estoque/estoque';
+import Estoque from './components/Stock/stock';
 import Navbar from './components/Navbar/navbar';
-import Sobre from './components/Sobre/sobre';
+import Sobre from './components/AboutUs/aboutUs';
 import Footer from './components/Footer/footer';
+import WhatsButton from './components/WhatsButton/whatsButton';
 
 function Index() {
   const images = [
@@ -18,6 +19,7 @@ function Index() {
       <Estoque />
       <Sobre />
       <Footer />
+      <WhatsButton />
     </div>
   );
 }

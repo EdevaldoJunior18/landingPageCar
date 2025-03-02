@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface CarouselProps {
     images: string[];
@@ -6,13 +6,28 @@ interface CarouselProps {
 
 export default function Carousel({ images }: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setProgress((prev) => (prev < 100 ? prev + 1 : 0));
+        }, 100);
+
+        if (progress === 100) {
+            nextSlide();
+        }
+
+        return () => clearInterval(interval);
+    }, [progress]);
 
     const nextSlide = () => {
-        setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        setProgress(0);
     };
 
     const prevSlide = () => {
-        setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        setProgress(0);
     };
 
     if (!images || images.length === 0) {
@@ -21,17 +36,18 @@ export default function Carousel({ images }: CarouselProps) {
 
     return (
         <div className="relative w-full mx-auto">
-            <div className="overflow-hidden rounded-lg">
+            <div className="overflow-clip rounded-lg">
                 <div
                     className="flex transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                     {images.map((image, index) => (
-                        <div key={index} className="min-w-full">
+                        <div key={index} className="min-w-full m-0 p-0">
                             <img
                                 src={image}
                                 alt={`Slide ${index + 1}`}
-                                className="w-full h-[50vh] md:h-[60vh] object-cover"
+                                className="w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] object-cover block border-none"
+                                style={{ objectPosition: 'center 70%' }}
                             />
                         </div>
                     ))}
@@ -40,27 +56,30 @@ export default function Carousel({ images }: CarouselProps) {
 
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800/50 text-white p-2 rounded-full hover:bg-gray-800/75 transition-colors"
-                aria-label="Slide anterior"
-            >
-                ❮
-            </button>
-            <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800/50 text-white p-2 rounded-full hover:bg-gray-800/75 transition-colors"
-                aria-label="Próximo slide"
-            >
-                ❯
+                className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 text-white"
+                aria-label="Slide anterior">
+                <svg width="18" height="28.64" viewBox="0 0 18 28.64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L2 14.32L16 26.64" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
             </button>
 
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            <button
+                onClick={nextSlide}
+                className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 text-white"
+                aria-label="Próximo slide" >
+                <svg width="18" height="28.64" viewBox="0 0 18 28.64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 2L16 14.32L2 26.64" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </button>
+
+            <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 w-full max-w-[120px]">
                 {images.map((_, index) => (
-                    <button
-                        key={`dot-${index}`}
-                        onClick={() => setCurrentIndex(index)}
-                        className={`w-2 h-2 rounded-full ${currentIndex === index ? 'bg-white' : 'bg-gray-400'}`}
-                        aria-label={`Ir para slide ${index + 1}`}
-                    />
+                    <div key={index} className="relative w-6 h-[2px] bg-gray-400">
+                        <div
+                            className="absolute top-0 left-0 h-full bg-white"
+                            style={{ width: currentIndex === index ? `${progress}%` : '0%' }}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

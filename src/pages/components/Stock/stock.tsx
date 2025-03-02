@@ -1,4 +1,3 @@
-import React from 'react';
 
 interface Veiculo {
     id: number;
@@ -7,7 +6,7 @@ interface Veiculo {
     imagem: string;
 }
 
-export default function Estoque() {
+export default function Estoque() { // isso aqui a minha ideia é ser um Get futuramente! mock por enquanto!
     const veiculos: Veiculo[] = [
         { id: 1, nome: 'Ram 2500 Laramie 6.7 2018', descricao: 'Clássico em ótimo estado', imagem: 'https://static.wixstatic.com/media/51bed3_4a6ddf48c9964ef0a40d4e78fdc1e6f0~mv2.jpg/v1/fill/w_560,h_420,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/51bed3_4a6ddf48c9964ef0a40d4e78fdc1e6f0~mv2.jpg' },
         { id: 2, nome: 'Toyota Corolla Xei 2.0 2020', descricao: 'Sedan moderno e econômico', imagem: 'https://revistacarro.com.br/wp-content/uploads/2019/12/Toyota-Corolla-XEi_4-1080x675.jpg' },
@@ -20,7 +19,7 @@ export default function Estoque() {
     ];
 
     return (
-        <div className="w-full bg-[#1A1A1A] py-8">
+        <div id="estoque" className="w-full bg-[#1A1A1A] py-8">
             <h2 className="text-3xl font-bold text-center mb-8 text-white">Estoque</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
                 {veiculos.map((veiculo) => (
@@ -28,8 +27,7 @@ export default function Estoque() {
                         <img
                             src={veiculo.imagem}
                             alt={veiculo.nome}
-                            className="w-full h-48 object-cover"
-                        />
+                            className="w-full h-48 object-cover" />
                         <div className="p-4">
                             <h3 className="text-lg font-semibold">{veiculo.nome}</h3>
                             <p className="text-gray-600 text-sm mb-4">{veiculo.descricao}</p>
