@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/images/logo_fipal.png';
 
-export default function Navbar() {
+export default function Navbar() { 
     return (
         <nav id="top" className="bg-[#1A1A1A] min-h-[180px] flex flex-col items-center justify-center px-4 py-6">
             <img
